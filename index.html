@@ -1,0 +1,208 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Mattia de’ Michieli Vitturi" />
+  <title>Navier-Stokes equations in cylindrical coordinates</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="pandoc.css" type="text/css" />
+  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({ TeX: { equationNumbers: {autoNumber: "all"} } });
+  </script>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Navier-Stokes equations in cylindrical coordinates</h1>
+<h2 class="author">Mattia de’ Michieli Vitturi</h2>
+</div>
+<h1 id="cauchy-momuntum-equation">Cauchy momuntum equation</h1>
+<p>The Cauchy momentum equation is a vector partial differential equation put forth by Cauchy that describes the non-relativistic momentum transport in any continuum. It expresses Newton’s second law and in convective (or Lagrangian) form it can be written as: <span class="math display">\[\label{Eq:cauchy}
+\frac{D\mathbf{u}}{Dt}=\frac{1}{\rho}\nabla\cdot {\boldsymbol{\mathbf{\sigma}}}+\mathbf{g}\]</span> where <span class="math inline">\(\rho\)</span> is the density at the point considered in the continuum (for which the continuity equation holds), <span class="math inline">\({\boldsymbol{\mathbf{\sigma}}}\)</span> is the stress tensor, and <span class="math inline">\(\mathbf{g}\)</span> contains all of the body forces per unit mass (often simply gravitational acceleration). In the Cauchy equation <span class="math inline">\(\mathbf{u}\)</span> is the flow velocity vector field, which depends on time and space.</p>
+<p>We want to write the terms of Eq. (1) in cylindrical coordinates. First of all, we write the flow velocity vector in cylindrical coordinates as: <span class="math display">\[\mathbf{u}(r,\theta,z,t) = u_r(r,\theta,z,t)\mathbf{e}_r + u_{\theta}(r,\theta,z,t)\mathbf{e}_{\theta} + u_z(r,\theta,z,t)\mathbf{e}_z,\]</span> where <span class="math inline">\(\left\{ {\boldsymbol{\mathbf{e}}}_r,{\boldsymbol{\mathbf{e}}}_{\theta},{\boldsymbol{\mathbf{e}}}_z \right\}\)</span> is a right-handed triad of unit vectors.</p>
+<h2 id="material-derivative">Material derivative</h2>
+<p>Let consider first the material derivative on the left-hand side: <span class="math display">\[\label{Eq:material_derivative}
+\frac{D\mathbf{u}}{Dt}=\frac{\partial {\mathbf{u}}}{\partial t} + \frac{\partial {\mathbf{u}}}{\partial r} \frac{d r}{dt} + \frac{\partial {\mathbf{u}}}{\partial \theta} \frac{d \theta}{dt} + \frac{\partial {\mathbf{u}}}{\partial z} \frac{d z}{dt}.\]</span></p>
+<p>When differentiating the velocity vector in cylindrical coordinates, the unit vectors must also be differentiated, because they are not fixed. In particular, we will make use of the following relations: <span class="math display">\[\label{eq:versor_deriv}
+\frac{\partial {\boldsymbol{\mathbf{e}}}_{r}}{\partial r} = \frac{\partial {\boldsymbol{\mathbf{e}}}_{\theta}}{\partial r} = \frac{\partial {\boldsymbol{\mathbf{e}}}_{z}}{\partial r} = 0, \quad \frac{\partial {\boldsymbol{\mathbf{e}}}_{r}}{\partial \theta} = {\boldsymbol{\mathbf{e}}}_{\theta}, \quad \frac{\partial {\boldsymbol{\mathbf{e}}}_{\theta}}{\partial \theta} = - {\boldsymbol{\mathbf{e}}}_{r}.\]</span></p>
+<p>The first partial derivative on the right-hand side of Eq. (3) is computed at a fixed position in time, thus the unit vectors do not change in time and theur derivatives are identically zero. Then, we have <span class="math display">\[\frac{\partial {\mathbf{u}}}{\partial t} = \frac{\partial u_r}{\partial t} \mathbf{e}_r + \frac{\partial u_{\theta}}{\partial t} \mathbf{e}_{\theta} + \frac{\partial u_z}{\partial t} \mathbf{e}_z.\]</span></p>
+<p>By making use of the definition of velocities (<span class="math inline">\(u_r=dr/dt\)</span>, <span class="math inline">\(u_{\theta}/r=d\theta/dt\)</span> and <span class="math inline">\(u_z=dz/dt\)</span>), we can now evaluate the remaining terms of Eq. (3) as follows</p>
+<p><span class="math display">\[\begin{array}{rl}
+\frac{dr}{dt}\frac{\partial \mathbf{u}}{\partial r} &amp; = u_r \frac{\partial \mathbf{u}}{\partial r} \\
+\\
+&amp; = u_r \left[ \frac{\partial u_r}{\partial r} \mathbf{e}_r + u_r \frac{\partial \mathbf{e}_r}{\partial r} + \frac{\partial u_{\theta}}{\partial r} \mathbf{e}_{\theta} + u_{\theta} \frac{\partial \mathbf{e}_{\theta}}{\partial r} + \frac{\partial u_z}{\partial r} \mathbf{e}_z + u_z \frac{\partial \mathbf{e}_z}{\partial r}\right] \\
+\\
+&amp; = u_r \left[ \frac{\partial u_r}{\partial r} \mathbf{e}_r + \frac{\partial u_{\theta}}{\partial r} \mathbf{e}_{\theta} + \frac{\partial u_z}{\partial r} \mathbf{e}_z \right] 
+\end{array}\]</span></p>
+<p><span class="math display">\[\begin{array}{rl}
+\frac{d{\theta}}{dt}\frac{\partial \mathbf{u}}{\partial {\theta}} &amp; = \frac{ u_{\theta} }{r} \frac{\partial \mathbf{u}}{\partial {\theta}} \\
+\\
+&amp; = \frac{ u_{\theta} }{r} \left[ \frac{\partial u_r}{\partial {\theta}} \mathbf{e}_r + u_r \frac{\partial \mathbf{e}_r}{\partial {\theta}} + \frac{\partial u_{\theta}}{\partial {\theta}} \mathbf{e}_{\theta} + u_{\theta} \frac{\partial \mathbf{e}_{\theta}}{\partial {\theta}} + \frac{\partial u_z}{\partial {\theta}} \mathbf{e}_z + u_z \frac{\partial \mathbf{e}_z}{\partial {\theta}}\right] \\
+\\
+&amp; = \frac{ u_{\theta} }{r} \left[ \frac{\partial u_r}{\partial {\theta}} \mathbf{e}_r + u_r \mathbf{e}_{\theta} + \frac{\partial u_{\theta}}{\partial {\theta}} \mathbf{e}_{\theta} + u_{\theta} (-\mathbf{e}_r) + \frac{\partial u_z}{\partial {\theta}} \mathbf{e}_z \right] \\
+\\
+&amp; = \frac{ u_{\theta} }{r} \left[ ( \frac{\partial u_r}{\partial {\theta}} -u_{\theta} ) \mathbf{e}_r + ( u_r + \frac{\partial u_{\theta}}{\partial {\theta}} ) \mathbf{e}_{\theta} + \frac{\partial u_z}{\partial {\theta}} \mathbf{e}_z \right]
+\end{array}\]</span></p>
+<p><span class="math display">\[\begin{array}{rl}
+\frac{dz}{dt}\frac{\partial \mathbf{u}}{\partial z} &amp; = u_z \frac{\partial \mathbf{u}}{\partial z} \\
+\\
+&amp; = u_z \left[ \frac{\partial u_z}{\partial z} \mathbf{e}_r + u_z \frac{\partial \mathbf{e}_r}{\partial z} + \frac{\partial u_{\theta}}{\partial z} \mathbf{e}_{\theta} + u_{\theta} \frac{\partial \mathbf{e}_{\theta}}{\partial z} + \frac{\partial u_z}{\partial z} \mathbf{e}_z + u_z \frac{\partial \mathbf{e}_z}{\partial z}\right] \\
+\\
+&amp; = u_z \left[ \frac{\partial u_r}{\partial z} \mathbf{e}_r + \frac{\partial u_{\theta}}{\partial z} \mathbf{e}_{\theta} + \frac{\partial u_z}{\partial z} \mathbf{e}_z \right] 
+\end{array}\]</span></p>
+<p>Putting all the terms together and collecting the terms multiplying the same unit vector we can write the material derivative as:</p>
+<p><span class="math display">\[\label{eq:material_expanded}
+\begin{array}{rl}
+\frac{D\mathbf{u}}{Dt} &amp;= \left[ \frac{\partial u_r}{\partial t}  + u_r \frac{\partial u_r}{\partial r} + \frac{ u_{\theta}} {r} \frac{\partial u_r}{\partial \theta} - \frac{u_{\theta}^2}{r} + u_z \frac{\partial u_r}{\partial z} \right] \mathbf{e}_r \\
+\\
+&amp;+ \left[ \frac{\partial u_{\theta}}{\partial t}  + u_r \frac{\partial u_{\theta}}{\partial r} + \frac{ u_{\theta}} {r} \frac{\partial u_{\theta}}{\partial \theta} - \frac{u_{\theta}u_r}{r} + u_z \frac{\partial u_{\theta}}{\partial z} \right] \mathbf{e}_{\theta} \\
+\\
+&amp;+ \left[ \frac{\partial u_z}{\partial t}  + u_r \frac{\partial u_z}{\partial r} + \frac{ u_{\theta}} {r} \frac{\partial u_z}{\partial \theta} + u_z \frac{\partial u_z}{\partial z} \right] \mathbf{e}_z. 
+\end{array}\]</span></p>
+<h2 id="stress-tensor">Stress tensor</h2>
+<p>We want to evaluate here the term <span class="math inline">\(\nabla\cdot{\boldsymbol{\mathbf{\sigma}}}\)</span> appearing in the Cauchy momentum equation in cylindrical coordinates. To this aim we compute the term for an infinitesimal volume as represented in Figure 1.</p>
+<div class="figure">
+<img src="stresses.jpg" alt="Stresses in the plane orthogonal to r and z direction. This figure is taken from https://scribd.com/doc/111812009/Navier-Stokes-Derivation-in-Cylindrical-Coordiantes." />
+<p class="caption">Stresses in the plane orthogonal to <span class="math inline">\(r\)</span> and <span class="math inline">\(z\)</span> direction. This figure is taken from https://scribd.com/doc/111812009/Navier-Stokes-Derivation-in-Cylindrical-Coordiantes.<span data-label="fig:stresses"></span></p>
+</div>
+<p>By summing all the contributions in the <span class="math inline">\(r\)</span> direction given by the stresses at the faces of the control volume we have:</p>
+<p><span class="math display">\[\begin{array}{l}
+\left( \sigma_{rr} + \frac{\partial \sigma_{rr}}{\partial r} \delta r \right) (r+\delta r) \delta \theta \delta z - \sigma_{rr}  r \delta \theta \delta z \\
+\\
++ \left( \sigma_{r\theta} + \frac{\partial \sigma_{r\theta}}{\partial \theta} \delta \theta \right) \delta r \delta z \cos \frac{\delta\theta}{2} - \sigma_{r\theta} \delta r \delta z \cos \frac{\delta\theta}{2} \\
+\\
++ \left( \sigma_{rz} + \frac{\partial \sigma_{rz}}{\partial z} \delta z \right) \left( r + \frac{\delta r}{2} \right) \delta r \delta \theta - \sigma_{rz}  \left( r + \frac{\delta r}{2} \right) \delta r \delta \theta \\
+\\
+- \left( \sigma_{\theta\theta} + \frac{\partial \sigma_{\theta\theta}}{\partial \theta} \delta \theta \right) \delta r \delta z \sin \frac{\delta\theta}{2} - \sigma_{\theta\theta} \delta r \delta z \sin \frac{\delta\theta}{2} 
+\end{array}\]</span></p>
+<p>Canceling some terms, dividing by the volume <span class="math inline">\(r\delta r\delta\theta \delta z\)</span>, and letting <span class="math inline">\(\delta r,\delta\theta\)</span> and <span class="math inline">\(\delta z\)</span> go to zero, it yields:</p>
+<p><span class="math display">\[\frac{\sigma_{rr}}{r} + \frac{\partial \sigma_{rr}}{\partial r} + \frac{1}{r} \frac{\partial \sigma_{r\theta}}{\partial \theta} + \frac{\partial \sigma_{rz}}{\partial z} - \frac{\sigma_{\theta\theta}}{r}.\]</span></p>
+<p>Similarly, we find for the <span class="math inline">\(\theta\)</span> direction: <span class="math display">\[\frac{2\sigma_{r\theta}}{r} + \frac{\partial \sigma_{r\theta}}{\partial r} + \frac{1}{r} \frac{\partial \sigma_{\theta\theta}}{\partial \theta} + \frac{\partial \sigma_{\theta z}}{\partial z},\]</span> and finally, for the <span class="math inline">\(z\)</span> direction: <span class="math display">\[\frac{\sigma_{rz}}{r} + \frac{\partial \sigma_{rz}}{\partial r} + \frac{1}{r} \frac{\partial \sigma_{\theta z}}{\partial \theta} + \frac{\partial \sigma_{z z}}{\partial z}.\]</span> We can thus write the stress term in Eq. (1) in the following way: <span class="math display">\[\label{Eq:stress_expanded}
+\begin{array}{rl}
+\nabla\cdot {\boldsymbol{\mathbf{\sigma}}} &amp;= \left( \frac{\sigma_{rr}}{r} + \frac{\partial \sigma_{rr}}{\partial r} + \frac{1}{r} \frac{\partial \sigma_{r\theta}}{\partial \theta} + \frac{\partial \sigma_{rz}}{\partial z} - \frac{\sigma_{\theta\theta}}{r} \right) \mathbf{e}_r\\
+\\
+&amp;+ \left( \frac{2\sigma_{r\theta}}{r} + \frac{\partial \sigma_{r\theta}}{\partial r} + \frac{1}{r} \frac{\partial \sigma_{\theta\theta}}{\partial \theta} + \frac{\partial \sigma_{\theta z}}{\partial z} \right) \mathbf{e}_{\theta}\\
+\\
+&amp;+ \left( \frac{\sigma_{rz}}{r} + \frac{\partial \sigma_{rz}}{\partial r} + \frac{1}{r} \frac{\partial \sigma_{\theta z}}{\partial \theta} + \frac{\partial \sigma_{z z}}{\partial z} \right) \mathbf{e}_z.
+\end{array}\]</span></p>
+<p>The previous expression could also be obtained writing the stress tensor <span class="math inline">\({\boldsymbol{\mathbf{\sigma}}}\)</span> with the following dyadic representation: <span class="math display">\[\begin{array}{rl}
+{\boldsymbol{\mathbf{\sigma}}} = &amp; \sigma_{rr} {\boldsymbol{\mathbf{e}}}_r \otimes {\boldsymbol{\mathbf{e}}}_{r} + \sigma_{r\theta} {\boldsymbol{\mathbf{e}}}_r \otimes {\boldsymbol{\mathbf{e}}}_{\theta} + \sigma_{rz} {\boldsymbol{\mathbf{e}}}_r \otimes {\boldsymbol{\mathbf{e}}}_{z} \\
+&amp; + \sigma_{\theta r} {\boldsymbol{\mathbf{e}}}_{\theta} \otimes {\boldsymbol{\mathbf{e}}}_{r} + \sigma_{\theta\theta} {\boldsymbol{\mathbf{e}}}_{\theta} \otimes {\boldsymbol{\mathbf{e}}}_{\theta} + \sigma_{\theta z} {\boldsymbol{\mathbf{e}}}_{\theta} \otimes {\boldsymbol{\mathbf{e}}}_{z} \\
+&amp; + \sigma_{z r} {\boldsymbol{\mathbf{e}}}_{z} \otimes {\boldsymbol{\mathbf{e}}}_{r} + \sigma_{z\theta} {\boldsymbol{\mathbf{e}}}_{z} \otimes {\boldsymbol{\mathbf{e}}}_{\theta} + \sigma_{zz} {\boldsymbol{\mathbf{e}}}_{z} \otimes {\boldsymbol{\mathbf{e}}}_{z}  
+\end{array}\]</span></p>
+<p>The divergence of <span class="math inline">\({\boldsymbol{\mathbf{\sigma}}}\)</span> is a vector, which can be represented as the operator<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a> <span class="math display">\[\left( {\boldsymbol{\mathbf{e}}}_{r} \frac{\partial}{\partial r} + {\boldsymbol{\mathbf{e}}}_{\theta} \frac{1}{r}\frac{\partial}{\partial \theta} + {\boldsymbol{\mathbf{e}}}_{z} \frac{\partial}{\partial z}\right)\cdot
+\left(
+\begin{array}{c}
+\sigma_{rr} {\boldsymbol{\mathbf{e}}}_r \otimes {\boldsymbol{\mathbf{e}}}_{r} + \sigma_{r\theta} {\boldsymbol{\mathbf{e}}}_r \otimes {\boldsymbol{\mathbf{e}}}_{\theta} + \sigma_{rz} {\boldsymbol{\mathbf{e}}}_r \otimes {\boldsymbol{\mathbf{e}}}_{z} \\
++ \sigma_{\theta r} {\boldsymbol{\mathbf{e}}}_{\theta} \otimes {\boldsymbol{\mathbf{e}}}_{r} + \sigma_{\theta\theta} {\boldsymbol{\mathbf{e}}}_{\theta} \otimes {\boldsymbol{\mathbf{e}}}_{\theta} + \sigma_{\theta z} {\boldsymbol{\mathbf{e}}}_{\theta} \otimes {\boldsymbol{\mathbf{e}}}_{z} \\
++ \sigma_{z r} {\boldsymbol{\mathbf{e}}}_{z} \otimes {\boldsymbol{\mathbf{e}}}_{r} + \sigma_{z\theta} {\boldsymbol{\mathbf{e}}}_{z} \otimes {\boldsymbol{\mathbf{e}}}_{\theta} + \sigma_{zz} {\boldsymbol{\mathbf{e}}}_{z} \otimes {\boldsymbol{\mathbf{e}}}_{z}  
+\end{array}
+\right)\]</span></p>
+<p>Evaluating the components of the divergence of a tensor is an extremely tedious operation because, in addition to the components themselves, each of the basis vectors in the dyadic representation of <span class="math inline">\({\boldsymbol{\mathbf{\sigma}}}\)</span> must be differentiated (see Eq. (4). For this reason I do not present the full derivation but only the evaluation of terms of the previous expression that contribute to the <span class="math inline">\(z\)</span>-component of the term <span class="math inline">\(\nabla\cdot {\boldsymbol{\mathbf{\sigma}}}\)</span>:</p>
+<p><span class="math display">\[\begin{aligned}
+&amp;\left( {\boldsymbol{\mathbf{e}}}_{r} \frac{\partial}{\partial r} \right)\cdot
+\left( \sigma_{rz} {\boldsymbol{\mathbf{e}}}_r \otimes {\boldsymbol{\mathbf{e}}}_{z} \right) + \left( {\boldsymbol{\mathbf{e}}}_{\theta} \frac{1}{r} \frac{\partial}{\partial \theta} \right)\cdot
+\left( \sigma_{r z} {\boldsymbol{\mathbf{e}}}_r \otimes {\boldsymbol{\mathbf{e}}}_{z} + \sigma_{\theta z} {\boldsymbol{\mathbf{e}}}_{\theta} \otimes {\boldsymbol{\mathbf{e}}}_{z} 
++ \right) \\
+\\
+&amp;+ \left( {\boldsymbol{\mathbf{e}}}_{z} \frac{\partial}{\partial z} \right)\cdot
+\left( \sigma_{zz} {\boldsymbol{\mathbf{e}}}_r \otimes {\boldsymbol{\mathbf{e}}}_{z} \right)= \\
+\\
+&amp; \frac{\partial \sigma_{rz}}{\partial r} ({\boldsymbol{\mathbf{e}}}_r \cdot {\boldsymbol{\mathbf{e}}}_r) {\boldsymbol{\mathbf{e}}}_z + \frac{\sigma_{rz}}{r} \left( \frac{\partial {\boldsymbol{\mathbf{e}}}_r}{\partial \theta} \cdot {\boldsymbol{\mathbf{e}}}_\theta \right){\boldsymbol{\mathbf{e}}}_z + \\
+\\
+&amp;  \frac{1}{r}  \frac{\partial \sigma_{\theta z}}{\partial \theta} ({\boldsymbol{\mathbf{e}}}_{\theta} \cdot {\boldsymbol{\mathbf{e}}}_{\theta}) {\boldsymbol{\mathbf{e}}}_z + \frac{\partial \sigma_{zz}}{\partial z} ({\boldsymbol{\mathbf{e}}}_z \cdot {\boldsymbol{\mathbf{e}}}_z) {\boldsymbol{\mathbf{e}}}_z = \\
+\\
+&amp; \left( \frac{\partial \sigma_{rz}}{\partial r} + \frac{\sigma_{rz}}{r}  +  \frac{1}{r} \frac{\partial \sigma_{\theta z}}{\partial \theta} + \frac{\partial \sigma_{z z}}{\partial z} \right) {\boldsymbol{\mathbf{e}}}_z\end{aligned}\]</span></p>
+<p>The final result coincides with that presented in Eq. ([Eq:stress_expanded]).</p>
+<h2 id="stress-strain">Stress-strain</h2>
+<p>The effect of stress in the continuum flow can be represented by the <span class="math inline">\(\nabla p\)</span> and <span class="math inline">\(\nabla\cdot {\boldsymbol{\mathbf{\tau}}}\)</span> terms; these are gradients of surface forces, analogous to stresses in a solid. Here <span class="math inline">\(\nabla p\)</span> is called the pressure gradient and arises from the isotropic part of the Cauchy stress tensor, which has order two. This part is given by normal stresses that turn up in almost all situations, dynamic or not. The anisotropic part of the stress tensor gives rise to <span class="math inline">\(\nabla\cdot {\boldsymbol{\mathbf{\tau}}}\)</span>, which conventionally describes viscous forces; for incompressible flow, this is only a shear effect. Thus, <span class="math inline">\({\boldsymbol{\mathbf{\tau}}}\)</span> is the deviatoric stress tensor, and the stress tensor is equal to: <span class="math display">\[\label{eq:stress_tensor}
+{\boldsymbol{\mathbf{\sigma}}}=-p\mathbf{Id}+{\boldsymbol{\mathbf{\tau}}},\]</span> where <span class="math inline">\(\mathbf{Id}\)</span> is the identity matrix in the space considered and <span class="math inline">\({\boldsymbol{\mathbf{\tau}}}\)</span> the shear tensor.</p>
+<p>For an incompressible fluid with constant viscosity, the shear tensor can be written as <span class="math display">\[\label{eq:stress_strain}
+{\boldsymbol{\mathbf{\tau}}} = \mu \left( \nabla \mathbf{u} + \nabla \mathbf{u}^T\right).\]</span></p>
+<p>The gradient of the vector <span class="math inline">\({\boldsymbol{\mathbf{u}}}\)</span> is a tensor, which can be represented as a dyadic product of the vector with the gradient operator as <span class="math display">\[\begin{aligned}
+{\boldsymbol{\mathbf{u}}}\otimes\nabla = \left( u_r {\boldsymbol{\mathbf{e}}}_{r} + u_{\theta} {\boldsymbol{\mathbf{e}}}_{\theta} + u_z {\boldsymbol{\mathbf{e}}}_{z} \right) \otimes \left( {\boldsymbol{\mathbf{e}}}_{r} \frac{\partial}{\partial r} + {\boldsymbol{\mathbf{e}}}_{\theta} \frac{1}{r}\frac{\partial}{\partial \theta} + {\boldsymbol{\mathbf{e}}}_{z} \frac{\partial}{\partial z}\right).\end{aligned}\]</span> The dyadic product can be expanded, but when evaluating the derivatives it is important to recall that the basis vectors are functions of the coordinate <span class="math inline">\(\theta\)</span> and consequently their derivatives may not vanish. For example <span class="math display">\[\begin{aligned}
+\frac{1}{r}\frac{\partial}{\partial \theta} \left( u_r {\boldsymbol{\mathbf{e}}}_r \right) \otimes {\boldsymbol{\mathbf{e}}}_{\theta} = \frac{1}{r}\frac{\partial u_r}{\partial \theta} {\boldsymbol{\mathbf{e}}}_r \otimes {\boldsymbol{\mathbf{e}}}_{\theta} + \frac{u_r}{r} \frac{\partial {\boldsymbol{\mathbf{e}}}_r}{\partial \theta} \otimes {\boldsymbol{\mathbf{e}}}_{\theta} = \frac{1}{r}\frac{\partial u_r}{\partial \theta} {\boldsymbol{\mathbf{e}}}_r \otimes {\boldsymbol{\mathbf{e}}}_{\theta} + \frac{u_r}{r} {\boldsymbol{\mathbf{e}}}_{\theta} \otimes {\boldsymbol{\mathbf{e}}}_{\theta}\end{aligned}\]</span></p>
+<p>The final result, expressed as a tensor, is <span class="math display">\[\label{eq:divu}
+\nabla{\boldsymbol{\mathbf{u}}}=
+\left[
+\begin{array}{ccc}
+\frac{\partial u_r}{\partial r} &amp; \frac{1}{r} \frac{\partial u_r}{\partial \theta} - \frac{u_{\theta}}{r}  &amp;  \frac{\partial u_r}{\partial z} \\
+\\
+\frac{\partial u_{\theta}}{\partial r} &amp; \frac{1}{r} \frac{\partial u_{\theta}}{\partial \theta} + \frac{u_{r}}{r}  &amp;  \frac{\partial u_{\theta}}{\partial z} \\
+\\
+\frac{\partial u_z}{\partial r} &amp; \frac{1}{r} \frac{\partial u_z}{\partial \theta}   &amp;  \frac{\partial u_z}{\partial z}
+\end{array}
+\right]\]</span></p>
+<p>Combining Eqs. (17), (18) and (20), we can finally write the components of the stress tensor <span class="math inline">\({\boldsymbol{\mathbf{\sigma}}}\)</span>: <span class="math display">\[\begin{aligned}
+\sigma_{rr} =&amp; -p + 2\mu \frac{\partial u_r}{\partial r},\\
+\sigma_{\theta\theta} =&amp;  - p + 2\mu \left( \frac{1}{r} \frac{\partial u_{\theta}}{\partial \theta} + \frac{u_r}{r} \right),\\
+\sigma_{zz} =&amp; -p + 2\mu \frac{\partial u_z}{\partial z}, \\
+\sigma_{r \theta} = \sigma_{\theta r} =&amp; \mu \left( \frac{1}{r} \frac{\partial u_r}{\partial \theta} + \frac{\partial u_{\theta}}{\partial r} - \frac{u_{\theta}}{r}\right), \\
+\sigma_{rz} = \sigma_{zr} = &amp; \mu \left( \frac{\partial u_r}{\partial z} + \frac{\partial u_z}{\partial r}\right), \\
+\sigma_{\theta z}=\sigma_{z \theta} = &amp;\mu \left( \frac{1}{r} \frac{\partial u_z}{\partial \theta} + \frac{\partial u_{\theta}}{\partial z}\right).\end{aligned}\]</span></p>
+<p>Now, substituting in the radial component of Eq. (14), we have:</p>
+<p><span class="math display">\[\label{Eq:stress_strain_expanded}
+\begin{array}{rl}
+&amp; \left( \frac{\sigma_{rr}}{r} + \frac{\partial \sigma_{rr}}{\partial r} + \frac{1}{r} \frac{\partial \sigma_{r\theta}}{\partial \theta} + \frac{\partial \sigma_{rz}}{\partial z} - \frac{\sigma_{\theta\theta}}{r} \right) \mathbf{e}_r \\
+\\
+&amp;= \left[ \left( -\frac{p}{r} + \frac{2\mu}{r} \frac{\partial u_r}{\partial r} \right) + \left( -\frac{\partial p}{\partial r} + 2 \mu \frac{\partial^2 u_r}{\partial r^2}  \right) \right. \\
+\\
+&amp; +\left. \left( \frac{\mu}{r^2} \frac{\partial^2 u_r}{\partial \theta^2} + \frac{\mu}{r} \frac{\partial^2 u_{\theta}}{\partial r \partial \theta} - \frac{\mu }{r^2} \frac{\partial u_{\theta}}{\partial \theta} \right) \right. \\
+\\
+&amp; + \left. \left( \mu \frac{\partial^2 u_r}{\partial z^2} + \mu \frac{\partial^2 u_z}{\partial r \partial z} \right) - \left( -\frac{p}{r} + \frac{2\mu}{r^2} \frac{\partial u_{\theta}}{\partial {\theta}}  + 2\mu \frac{u_r}{r^2} \right) \right] \mathbf{e}_r \\
+\\
+&amp;= -\frac{\partial p}{\partial r} + \mu \left[ \frac{2}{r} \frac{\partial u_r}{\partial r} + 2 \frac{\partial^2 u_r}{\partial r^2} + \frac{1}{r} \frac{\partial^2 u_{\theta}}{\partial r \partial \theta} \right. \\
+\\
+&amp; \left. + \frac{1}{r^2} \frac{\partial^2 u_r}{\partial \theta^2}  - \frac{1}{r^2} \frac{\partial u_{\theta}}{\partial \theta} +  \left(  \frac{\partial^2 u_r}{\partial z^2} +  \frac{\partial^2 u_z}{\partial r \partial z} \right) - \frac{2}{r^2} \frac{\partial u_{\theta}}{\partial \theta} - \frac{2}{r^2} u_r \right] \mathbf{e}_r
+\end{array}\]</span></p>
+<p>We rewrite now the first two differential terms in the square brackets in the following way: <span class="math display">\[\begin{aligned}
+\frac{2}{r} \frac{\partial u_r}{\partial r} + 2 \frac{\partial^2 u_r}{\partial r^2} = \frac{1}{r}\frac{\partial}{\partial r} \left( r \frac{\partial u_r}{\partial r} \right) + \frac{1}{r} \frac{\partial u_r}{\partial r} + \frac{\partial^2 u_r}{\partial r^2} \\
+= \frac{1}{r}\frac{\partial}{\partial r} \left( r \frac{\partial u_r}{\partial r} \right) + \frac{u_r}{r^2}+\frac{\partial}{\partial r} \left[ \frac{1}{r} \frac{\partial (r u_r)}{\partial r} \right] \end{aligned}\]</span> and the third term as: <span class="math display">\[\begin{aligned}
+\frac{1}{r}\frac{\partial^2 u_{\theta}}{\partial r \partial \theta} = \frac{\partial}{\partial r}\left( \frac{1}{r} \frac{\partial u_{\theta}}{\partial \theta}\right) + \frac{1}{r^2} \frac{\partial u_{\theta}}{\partial \theta}.\end{aligned}\]</span> Now, substituting in Eq. (21) and collecting the terms, we can write the radial component as <span class="math display">\[\begin{aligned}
+- \frac{\partial p}{\partial r} + \mu \left\{-\frac{u_r}{r^2}+ \frac{\partial}{\partial r} \left[ \frac{1}{r} \frac{\partial (r u_r)}{\partial r} + \frac{1}{r} \frac{\partial u_{\theta}}{\partial \theta}+ \frac{\partial u_z}{\partial z}  \right] \right. \\
+\left. + \frac{1}{r} \frac{\partial}{\partial r} \left( r \frac{\partial u_r}{\partial r} \right) +\frac{1}{r^2}\frac{\partial^2 u_r}{\partial \theta^2} + \frac{\partial^2 u_r}{\partial z^2} - \frac{2}{r^2} \frac{\partial u_{\theta}}{\partial \theta} \right\}.\end{aligned}\]</span></p>
+<p>For an incompressible fluid the term in the square brackets is equal to zero (continuity equation) and thus, combining the previous result with Eq. (9) we can write the following momentum equation for the radial component of the velocity: <span class="math display">\[\begin{array}{c}
+\displaystyle \frac{\partial u_r}{\partial t}  + u_r \frac{\partial u_r}{\partial r} + \frac{ u_{\theta}} {r} \frac{\partial u_r}{\partial \theta} - \frac{u_{\theta}^2}{r} + u_z \frac{\partial u_r}{\partial z} = \\ 
+\\
+\displaystyle - \frac{1}{\rho} \frac{\partial p}{\partial r} + \frac{\mu}{\rho} \left\{-\frac{u_r}{r^2} + \frac{1}{r} \frac{\partial}{\partial r} \left( r \frac{\partial u_r}{\partial r} \right) +\frac{1}{r^2}\frac{\partial^2 u_r}{\partial \theta^2} + \frac{\partial^2 u_r}{\partial z^2} - \frac{2}{r^2} \frac{\partial u_{\theta}}{\partial \theta} \right\} + g_r.
+\end{array}\]</span></p>
+<p>In a similar way, we can derive the momentum equations for the <span class="math inline">\(\theta\)</span>-component of the velocity <span class="math display">\[\begin{array}{c}
+\displaystyle \frac{\partial u_{\theta}}{\partial t}  + u_r \frac{\partial u_{\theta}}{\partial r} + \frac{ u_{\theta}} {r} \frac{\partial u_{\theta}}{\partial \theta} + \frac{u_r u_{\theta}}{r} + u_z \frac{\partial u_{\theta}}{\partial z} = \\ 
+\\
+\displaystyle - \frac{1}{\rho} \frac{\partial p}{\partial \theta} + \frac{\mu}{\rho} \left\{-\frac{u_{\theta}}{r^2} + \frac{1}{r} \frac{\partial}{\partial r} \left( r \frac{\partial u_{\theta}}{\partial r} \right) +\frac{1}{r^2}\frac{\partial^2 u_{\theta}}{\partial \theta^2} + \frac{\partial^2 u_{\theta}}{\partial z^2} - \frac{2}{r^2} \frac{\partial u_r}{\partial \theta} \right\} + g_{\theta},
+\end{array}\]</span> and, for the <span class="math inline">\(z\)</span>-component: <span class="math display">\[\begin{array}{c}
+\displaystyle \frac{\partial u_z}{\partial t}  + u_r \frac{\partial u_z}{\partial r} + \frac{ u_{\theta}} {r} \frac{\partial u_z}{\partial \theta} + u_z \frac{\partial u_z}{\partial z} = \\ 
+\\
+\displaystyle - \frac{1}{\rho} \frac{\partial p}{\partial \theta} + \frac{\mu}{\rho} \left\{ \frac{1}{r} \frac{\partial}{\partial r} \left( r \frac{\partial u_z}{\partial r} \right) +\frac{1}{r^2}\frac{\partial^2 u_z}{\partial \theta^2} + \frac{\partial^2 u_z}{\partial z^2} \right\} + g_z.
+\end{array}\]</span></p>
+<h1 id="axisymmetric-flow">Axisymmetric flow</h1>
+<p>Cylindrical coordinates are chosen to take advantage of symmetry, so that a velocity component can disappear. A very common case is axisymmetric flow with the assumption of no tangential velocity (<span class="math inline">\(u_{\theta}=0\)</span>), and the remaining quantities are independent of <span class="math inline">\(\theta\)</span>. In this case the equations for the two remaining velocity components write as: <span class="math display">\[\begin{array}{c}
+\displaystyle \frac{\partial u_r}{\partial t}  + u_r \frac{\partial u_r}{\partial r} + u_z \frac{\partial u_r}{\partial z} =  - \frac{1}{\rho} \frac{\partial p}{\partial r} + \frac{\mu}{\rho} \left\{-\frac{u_r}{r^2} + \frac{1}{r} \frac{\partial}{\partial r} \left( r \frac{\partial u_r}{\partial r} \right) + \frac{\partial^2 u_r}{\partial z^2} \right\} + g_r,
+\end{array}\]</span></p>
+<p><span class="math display">\[\begin{array}{c}
+\displaystyle \frac{\partial u_z}{\partial t}  + u_r \frac{\partial u_z}{\partial r} + u_z \frac{\partial u_z}{\partial z} =  - \frac{1}{\rho} \frac{\partial p}{\partial \theta} + \frac{\mu}{\rho} \left\{ \frac{1}{r} \frac{\partial}{\partial r} \left( r \frac{\partial u_z}{\partial r} \right) + \frac{\partial^2 u_z}{\partial z^2} \right\} + g_z,
+\end{array}\]</span></p>
+<p>while the continuity equation is <span class="math display">\[\frac{1}{r}\frac{\partial}{\partial r} (r u_r) +\frac{\partial u_z}{\partial z} = 0.\]</span></p>
+<h2 id="hagen-poiseuille-flow">Hagen-Poiseuille flow</h2>
+<p>The laminar flow through a pipe of uniform (circular) cross-section is known as Hagen–Poiseuille flow. The equations governing the Hagen–Poiseuille flow can be derived directly from the previous equations by making the following additional assumptions:</p>
+<ol>
+<li><p>the flow is steady (<span class="math inline">\(\displaystyle \partial (...)/\partial t=0\)</span>);</p></li>
+<li><p>the radial and swirl components of the velocity are zero (<span class="math inline">\(\displaystyle u_{r}=u_{\theta }=0\)</span>);</p></li>
+<li><p>the flow is fully developed (<span class="math inline">\(\displaystyle \partial u_z / \partial z = 0\)</span>).</p></li>
+</ol>
+<p>The continuity equation is identically satisfied. The momentum equation for the radial component of the velocity reduces to <span><span class="math inline">\(\displaystyle \partial p/\partial r=0\)</span></span>, i.e., the pressure <span class="math inline">\(p\)</span> is a function of the axial coordinate <span class="math inline">\(z\)</span> only. The third momentum equation reduces to: <span class="math display">\[\frac{1}{r}\frac{\partial}{\partial r} \left( r \frac{\partial u_z}{\partial r} \right) = \frac{1}{\mu} \frac{\partial p}{\partial z}.\]</span> The equation can be integrated with respect to <span class="math inline">\(r\)</span> and the solution is <span class="math display">\[u_z = -\frac{1}{4\mu} \frac{\partial p}{\partial z} (R^2 - r^2 )\]</span> where <span class="math inline">\(R\)</span> is the radius of the pipe.</p>
+<p>The maximum velocity occurs at the pipe centerline (<span class="math inline">\(r=0\)</span>): <span class="math display">\[\begin{aligned}
+u_{z,max} = \frac{R^2}{4\mu}\left( -\frac{\partial p}{\partial z} \right)\end{aligned}\]</span> while the average velocity can be obtained by integrating over the pipe cross section and is <span class="math inline">\(u_{z,avg}= 0.5 u_{z,max}\)</span>.</p>
+<p>From the velocity profile it is also possible to calculate the wall shear stress in the direction <span class="math inline">\(z\)</span> (the wall shear stress in the direction <span class="math inline">\(\theta\)</span> is zero, being <span class="math inline">\(u_r=u_{\theta}=0\)</span>): <span class="math display">\[\left. \sigma_{rz}\right|_{r=R}= \mu \left( \frac{\partial u_{r}}{\partial z} + \frac{\partial u_{z}}{\partial r} \right)_{r=R}
+ = \mu \left( \frac{1}{4\mu} \frac{\partial p}{\partial z} 2r  \right)_{r=R} = \frac{R}{2} \frac{\partial p}{\partial z}.\]</span></p>
+<p>If we consider a pipe of length <span class="math inline">\(l\)</span> and a constant vertical pressure gradient <span class="math inline">\(\frac{\partial p}{\partial z}=\Delta P/l\)</span> (where <span class="math inline">\(\Delta P\)</span> is the pressure difference between the outlet and inlet of the pipe), we can also calculate the shear stress at the wall from basic principles. The force resulting from the pressure difference is equal to <span class="math inline">\(\Delta p \pi R^2\)</span> and should equal the opposing force generated by friction at the wall. This frictional force equals the shear stress <span class="math inline">\(\sigma_{rz}\)</span>, times the lateral surface <span class="math inline">\(2\pi R l\)</span>. Equating these forces gives <span class="math inline">\(\Delta P\cdot \pi R^2 = \sigma_{rz} \cdot 2\pi R l\)</span>, and thus <span class="math display">\[\sigma_{rz} = \frac{R}{2} \frac{\partial p}{\partial z}.\]</span></p>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>In the divergence operator there is a factor <span class="math inline">\(1/r\)</span> multiplying the partial derivative with respect to <span class="math inline">\(\theta\)</span>. An easy way to understand where this factor come from is to consider a function <span class="math inline">\(f(r,\theta,z)\)</span> in cylindrical coordinates and its gradient. For a small change in going from a point <span class="math inline">\((r,\theta,z)\)</span> to <span class="math inline">\((r+dr,\theta+d\theta,z+dz)\)</span> we can write <span class="math display">\[df = \frac{\partial f}{\partial r} dr + \frac{\partial f}{\partial \theta} d\theta + \frac{\partial f}{\partial z} dz.\]</span> At the same time, we can express the same increment as <span class="math inline">\(df=(dr {\boldsymbol{\mathbf{e}}}_r + r d\theta {\boldsymbol{\mathbf{e}}}_{theta} + dz {\boldsymbol{\mathbf{e}}}_z)\cdot \nabla f\)</span> Let assume that the gradient of f can be expressed as <span class="math display">\[\nabla f = \alpha {\boldsymbol{\mathbf{e}}}_r + \beta {\boldsymbol{\mathbf{e}}}_{theta} + \gamma {\boldsymbol{\mathbf{e}}}_z\]</span> where the scalar coefficients <span class="math inline">\(\alpha,\beta,\gamma\)</span> are to be found. We have <span class="math display">\[df = (dr {\boldsymbol{\mathbf{e}}}_r + r d\theta {\boldsymbol{\mathbf{e}}}_{theta} + dz {\boldsymbol{\mathbf{e}}}_z)\cdot ( \alpha {\boldsymbol{\mathbf{e}}}_r + \beta {\boldsymbol{\mathbf{e}}}_{theta} + \gamma {\boldsymbol{\mathbf{e}}}_z) = \alpha dr + r \beta d\theta + \gamma dz.\]</span> Comparing this expression with the first one for <span class="math inline">\(df\)</span> we see that <span class="math inline">\(\alpha=\frac{\partial f}{\partial r}\)</span>, <span class="math inline">\(\beta=\frac{1}{r}\frac{\partial f}{\partial \theta}\)</span> and <span class="math inline">\(\gamma = \frac{\partial f}{\partial z}\)</span> and thus we can write the gradient operator as <span class="math display">\[\nabla = {\boldsymbol{\mathbf{e}}}_{r} \frac{\partial}{\partial r} + {\boldsymbol{\mathbf{e}}}_{\theta} \frac{1}{r}\frac{\partial}{\partial \theta} + {\boldsymbol{\mathbf{e}}}_{z} \frac{\partial}{\partial z}.\]</span><a href="#fnref1">↩</a></p></li>
+</ol>
+</div>
+</body>
+</html>
