@@ -6,3 +6,4 @@ You can download here a pdf of the document, or read it online at:
 
 https://demichie.github.io/NS_cylindrical/
 
+2023-09-27. Fixed an error in Eq.22 (Thanks to Abdallah Daddi-Moussa-Ider)
